@@ -1,0 +1,256 @@
+{% extends "../base.html" %}
+{% load mathfilters %}
+{% load static %}
+{% block title %}Cart Summary{% endblock %}
+{% block import %}
+
+{% endblock %}
+{% block content %}
+
+
+<main class="pt-5 mt-3">
+  <div class="container">
+    <a id="cart"></a>
+    <div class="mb-1 text-center">
+      <div class="btn-group pb-0">
+        <a type="button" class="btn btn-secondary btn-block" href="/"><strong>Catalogue (click here)</strong></a>
+      </div>
+  </div>
+
+    <marquee behavior="scroll" direction="left" style="background-color: rgba(255, 255, 0, 0.589);">After Adding required plants to cart please click <b>Place order</b>.</marquee>
+    {% if basket|length < 5 %}
+    <div class="alert alert-primary text-center py-1 mb-1" role="alert">
+      Please Add Atleast <strong>5</strong> items to cart    
+    </div>
+    {% endif %}
+
+    {% if basket.get_total_price >= 700 %}
+    <div class="alert alert-primary text-center py-1 mb-1" role="alert">
+      One Complementary plant will be added to cart since you ordered for an amount of more than 700
+    </div>
+    {% else %}
+    <div class="alert alert-primary text-center py-1 mb-1" role="alert">
+      Purchase for more than 700 and get a free gift from us.
+    </div>
+    {% endif %}
+    <div class="h4 p-0 m-0 mb-1 pb-1 bg-success text-center text-white">Selected Plants</div>
+    {% for item in basket %}
+    {% with product=item.product %}
+    <div data-index="{{product.id}}" class="row mb-1 border product-item mx-0">
+      <div class="col-md-0 col-lg-10 ps-md-3 ps-lg-10 px-0">
+        <a href="{{ product.get_absolute_url }}" class="text-decoration-none text-reset">
+          <h1 class="h6 m-0 text-center">{{product.pid}}. {{ product.title }} - <span class="h6 fw-bold">{{ product.price }}x{{item.qty}} = &#8377;{{item.qty|mul:product.price}}</span></h1>
+        </a>
+        
+              <table class="table table-hover p-0 m-0">
+                <tbody>
+                <tr>
+                  <td class="p-0 text-center">
+                    <img
+                    class="img-fluid
+                    alt="Responsive image"
+                    src="{{ product.image.url }}"
+                    width="50px"
+                  />
+                  </td>
+                  <td class="p-0 text-center">
+                    <button type="button"
+                    data-index="{{product.id}}"
+                    class="btn btn-outline-secondary btn-sm p-1 mt-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop{{product.id}}" >
+                    Update
+                  </button>
+                  <!--Modal-->
+                  <div
+                  class="modal fade"
+                  id="staticBackdrop{{product.id}}" data-bs-backdrop="static"
+                  tabindex="-1"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                          Update {{ product.title }}
+                        </h5>
+                      </div>
+                      <p class="card-text">
+                        <a
+                          class="text-dark text-decoration-none"
+                          href="{{ product.get_absolute_url }}"
+                          >{{ product.title }}</a
+                        >
+                      </p>
+                      <div class="modal-body pb-0 mb-0">
+                        <div class="text-center">
+                          <label for="select">Change Qty: </label>
+                          <select id="select{{product.id}}">
+                            <option selected>
+                            {{item.qty}}
+                            </option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                          </select>
+
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" id="update-button" data-index="{{product.id}}"
+                        class="btn btn-outline-secondary btn-sm update-button">
+                        Update Value
+                        </button>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  </td>
+                  <td class="p-0 text-center">
+                    <button type="submit" id="delete-button" data-index="{{product.id}}"
+                      class="btn btn-outline-danger btn-sm delete-button p-1 mt-2">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+    {% endwith %}
+    {% endfor %}
+    <div class="col-12 text-end">
+      <h5 class="h6 fw-bold m-0 d-inline-flex">Total Plants:</h5>     {{basket|length}} 
+    </div>
+    <div class="col-12 text-end">
+      <h5 class="h6 fw-bold m-0 d-inline-flex">Total: &#8377;</h5><div id="subtotal" class="h6 fw-bold d-inline-flex m-0"> {{basket.get_total_price}} 
+      </div>
+      {% if basket.get_total_price > 0 %}
+      <small>+ delivery charges</small>
+      {% endif %}  
+
+    </div>
+    <div class="alert alert-dark text-center m-0 mb-2 p-0" role="alert">
+      After Adding required plants to cart please click <b>Place order</b>. 
+        </div>
+  </div>
+  <div class="text-center">
+    <div class="btn-group pb-1">
+      <form action="/basket/" method="post">        
+        {% csrf_token %}
+          <button class="btn btn-danger" type="submit" name="button1" value="clear">Empty cart</button>
+        </form>
+        </div>
+    <div class="btn-group pb-1">
+      <a type="button" class="btn btn-secondary" target="_blank" href="https://api.whatsapp.com/send?phone=%2B917904050237&text=*Hello, i have chosen the following plants from your site*
+%0a
+{% for item in basket %}
+   {% with product=item.product %}{{product.pid}}.{{ product.title }}-{{item.qty}}*{{product.price}}={{item.qty|mul:product.price}}/- %0a{% endwith %}
+{% endfor %}
+*Total Plants={{basket|length}}*%0a
+*Total Price={{basket.get_total_price}}*%2Bdelivery%0a%0a
+*Plant Id and qty*%0a 
+{% for item in basket %}{% with product=item.product %}{{product.pid}}-{{item.qty}},{% endwith %}{% endfor %}%0a 
+{% if basket.get_total_price > 700 %}
+*%2BComplementary plant*
+{% endif %}  
+">Place Order</a>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+</main>
+<script>
+  // Delete Item
+  $(document).on('click', '.delete-button', function (e) {
+    e.preventDefault();
+    var prodid = $(this).data('index');
+    $.ajax({
+      type: 'POST',
+      url: '{% url "basket:basket_delete" %}',
+      data: {
+        productid: $(this).data('index'),
+        csrfmiddlewaretoken: "{{csrf_token}}",
+        action: 'post'
+      },
+      success: function (json) {
+        $('.product-item[data-index="' + prodid + '"]').remove();
+        document.getElementById("subtotal").innerHTML = json.subtotal;
+        document.getElementById("basket-qty").innerHTML = json.qty;
+        document.location.reload();
+      },
+      error: function (xhr, errmsg, err) {}
+    });
+  })
+
+  // Update Item
+  $(document).on('click', '.update-button', function (e) {
+    e.preventDefault();
+    var prodid = $(this).data('index');
+    $.ajax({
+      type: 'POST',
+      url: '{% url "basket:basket_update" %}',
+      data: {
+        productid: $(this).data('index'),
+        productqty: $('#select' + prodid + ' option:selected').text(),
+        csrfmiddlewaretoken: "{{csrf_token}}",
+        action: 'post'
+      },
+      success: function (json) {
+        document.getElementById("basket-qty").innerHTML = json.qty
+        document.getElementById("subtotal").innerHTML = json.subtotal
+        document.location.reload();
+      },
+      error: function (xhr, errmsg, err) {}
+    });
+  })
+
+  var fired_button = "none";
+  $("button").click(function () {});
+
+  $(document).on("click", "button", function (e) {
+    var val = this.id + "sel";
+    var qua = document.getElementById(val).value;
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: '{% url "basket:basket_add" %}',
+      data: {
+        productid: this.id,
+        productqty: qua,
+        csrfmiddlewaretoken: "{{csrf_token}}",
+        action: "post",
+      },
+      success: function (json) {
+        document.getElementById("val").innerHTML = json.qty;
+        document.location.reload();
+      },
+      error: function (xhr, errmsg, err) {},
+    });
+  });
+
+  function reloadPage(){
+    location.reload(true);
+}
+</script>
+
+{% endblock %}

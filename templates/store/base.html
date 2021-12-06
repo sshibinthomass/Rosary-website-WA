@@ -1,0 +1,571 @@
+{% load static %}
+{% load mathfilters %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>RPH-
+    {% block title %}Rosary Plant House{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1", shrink-to-fit=no">
+    {% block import %}
+    {% endblock %}
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="shortcut icon" href="/media/images/favicon.ico" />
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/9b720ae962.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#7952b3">
+    <style>
+        /* Carousel base class */
+.carousel {
+    margin-bottom: 4rem;
+  }
+  /* Since positioning the image, we need to help out the caption */
+  .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+  }
+  
+  /* Declare heights because of positioning of img element */
+  .carousel-item {
+    height: 32rem;
+  }
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    height: 32rem;
+  }
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .marketing h2 {
+    font-weight: 400;
+  }
+  .marketing .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+  }
+  
+  
+  /* Featurettes
+  ------------------------- */
+  
+  .featurette-divider {
+    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+  }
+  
+  /* Thin out the marketing headings */
+  .featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+  }
+  
+  
+  /* RESPONSIVE CSS
+  -------------------------------------------------- */
+  
+  @media (min-width: 40em) {
+    /* Bump up size of carousel content */
+    .carousel-caption p {
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+      line-height: 1.4;
+    }
+  
+    .featurette-heading {
+      font-size: 50px;
+    }
+  }
+  
+  @media (min-width: 62em) {
+    .featurette-heading {
+      margin-top: 7rem;
+    }
+  }  
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+          }
+    
+          @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+              font-size: 3.5rem;
+            }
+          }
+        .fab {
+             font-size: 20px;
+           width: 30px;
+            text-align: center;
+            text-decoration: none;
+          }
+          .fas {
+            font-size: 20px;
+          width: 30px;
+           text-align: center;
+           text-decoration: none;
+         }
+          
+          /* Add a hover effect if you want */
+          .fa:hover {
+            opacity: 0.7;
+          }
+          
+          /* Set a specific color for each brand */
+          
+          /* Facebook */
+          .fa-facebook {
+            color: rgb(17, 0, 255);
+          }
+          .fa-whatsapp-square{
+            color: rgb(0, 90, 0);
+          }
+          /* Twitter */
+          .fa-youtube {
+            color: rgb(179, 0, 0);
+          }
+          
+          .fa-instagram {
+            color: white;
+          }
+
+          .fa-home{
+              color: rgb(0, 0, 0);
+          }
+
+          .fa-arrow-alt-circle-up{
+            color: rgb(0, 0, 0);
+            }
+            .destinations
+            {
+              width: 100%;
+              background: #FFFFFF;
+              padding-top: 115px;
+              padding-bottom: 116px;
+            }
+            .section_subtitle
+            {
+              font-family: 'Oswald', sans-serif;
+              font-size: 12px;
+              font-weight: 400;
+              color: #72728c;
+              line-height: 0.75;
+              text-transform: uppercase;
+              letter-spacing: 0.2em;
+            }
+            .section_title
+            {
+              color: #181818;
+              margin-top: 26px;
+            }
+            .destination_sorting_row
+            {
+              margin-top: 100px;
+            }
+            .destination_sorting
+            {
+              width: 100%;
+            }
+            .item_sorting > li
+            {
+              display: inline-block;
+              position: relative;
+              width: 123px;
+              height: 33px;
+              background: #f2f5f6;
+              line-height: 33px;
+              cursor: pointer;
+              padding-left: 20px;
+              padding-right: 17px;
+              margin-right: 8px;
+              font-family: 'Oswald', sans-serif;
+              font-size: 12px;
+              font-weight: 400;
+              color: #7c7c94;
+              margin-bottom: 10px;
+            }
+            .item_sorting > li:last-child
+            {
+              margin-right: 0;
+            }
+            .num_sorting_text
+            {
+              padding-right: 11px;
+            }
+            .item_sorting li i
+            {
+              float: right;
+              line-height: 33px;
+              font-size: 12px;
+              color: #7c7c94;
+            }
+            .item_sorting li ul
+            {
+              display: block;
+              position: absolute;
+              right: 0;
+              top: 120%;
+              margin: 0;
+              width: 100%;
+              background: #FFFFFF;
+              visibility: hidden;
+              opacity: 0;
+              z-index: 1;
+              box-shadow: 0 15px 25px rgba(63, 78, 100, 0.15);
+              -webkit-transition: opacity 0.3s ease;
+              -moz-transition: opacity 0.3s ease;
+              -ms-transition: opacity 0.3s ease;
+              -o-transition: opacity 0.3s ease;
+              transition: all 0.3s ease;
+            }
+            .item_sorting > li:hover ul
+            {
+              visibility: visible;
+              opacity: 1;
+              top: calc(100% + 1px);
+            }
+            .item_sorting li ul li
+            {
+              display: block;
+              text-align: left;
+              padding-left: 15px;
+              padding-right: 15px;
+            }
+            .item_sorting li ul li span
+            {
+              display: block;
+              height: 36px;
+              line-height: 36px;
+              border-bottom: solid 1px #dddddd;
+              color: #131a2f;
+              text-align: right;
+              padding-right: 22px;
+              -webkit-transition: opacity 0.3s ease;
+              -moz-transition: opacity 0.3s ease;
+              -ms-transition: opacity 0.3s ease;
+              -o-transition: opacity 0.3s ease;
+              transition: all 0.3s ease;
+            }
+            .item_sorting li ul li span:hover
+            {
+              color: #b5aec4;
+            }
+            .item_sorting li ul li:last-child span
+            {
+              border-bottom: none;
+            }
+            .item_sorting li span:nth-child(2)
+            {
+              margin-left: 63px;
+            }
+            .sort_box
+            {
+              width: 16px;
+              height: 16px;
+              cursor: pointer;
+            }
+            .sort_box i
+            {
+              width: 100%;
+              height: 100%;
+              font-size: 18px;
+              color: #7c7c94;
+              -webkit-transition: all 200ms ease;
+              -moz-transition: all 200ms ease;
+              -ms-transition: all 200ms ease;
+              -o-transition: all 200ms ease;
+              transition: all 200ms ease;
+            }
+            .sort_box i:hover
+            {
+              color: #181818;
+            }
+            .destinations_row
+            {
+              margin-top: 45px;
+            }
+            .destination_image
+            {
+              width: 100%;
+            }
+            .destination_image img
+            {
+              max-width: 100%;
+            }
+            .spec_offer
+            {
+              position: absolute;
+              top: 15px;
+              left: 16px;
+              width: 118px;
+              height: 30px;
+              background: rgba(0, 128, 0, 0);
+              border-radius: 40%;
+            }
+            .spec_offer a
+            {
+              display: block;
+              font-family: 'Oswald', sans-serif;
+              font-size: 12px;
+              color: #ffffff77;
+              line-height: 36px;
+              font-weight: 400;
+            }
+            .destinations_container
+            {
+              width: calc(100% + 30px);
+              left: -15px;
+            }
+            .destination
+            {
+              width: calc(100% / 3);
+              padding-left: 15px;
+              padding-right: 15px;
+              margin-bottom: 58px;
+            }
+            .destination_title
+            {
+              margin-top: 15px;
+            }
+            .destination_title a
+            {
+              font-family: 'Oswald', sans-serif;
+              font-size: 30px;
+              font-weight: 400;
+              color: #181818;
+            }
+            .destination_subtitle
+            {
+              margin-top: -4px;
+            }
+            .destination_price
+            {
+              font-size: 16px;
+              font-weight: 700;
+              color: #181818;
+              margin-top: 16px;
+            }
+            .destination_list
+            {
+              margin-top: 41px;
+            }
+            .destination_list ul li
+            {
+              position: relative;
+              font-size: 15px;
+              font-weight: 600;
+              color: #72728c;
+              padding-left: 36px;
+            }
+            .destination_list ul li:not(:last-child)
+            {
+              margin-bottom: 14px;
+            }
+            .destination_list ul li::before
+            {
+              display: block;
+              position: absolute;
+              top: 50%;
+              -webkit-transform: translateY(-50%);
+              -moz-transform: translateY(-50%);
+              -ms-transform: translateY(-50%);
+              -o-transform: translateY(-50%);
+              transform: translateY(-50%);
+              left: 0;
+              width: 7px;
+              height: 7px;
+              background: #181818;
+              border-radius: 50%;
+              content: '';
+            }
+            .load_more_button
+            {
+              margin-left: auto;
+              margin-right: auto;
+              margin-top: 51px;
+            }
+            .map-container-6{
+              overflow:hidden;
+              padding-bottom:56.25%;
+              position:relative;
+              height:0;
+              }
+              .map-container-6 iframe{
+              left:0;
+              top:0;
+              height:100%;
+              width:100%;
+              position:absolute;
+              }
+            
+    </style>
+
+ </head>
+
+<body>
+  {% block header %}
+    <header>
+        <nav class="navbar fixed-top navbar-expand-md navbar-light pb-0 pt-0" style="background-color: rgba(0, 235, 0, 0.877)">
+            <div class="container-fluid pd-0 my-1">
+                <a class="navbar-brand" href="/">
+                    <img src="/media/images/logo(only).png" alt="" width="30" height="30">
+                  </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item pl-2 my-1">
+                            <a type="button" class="nav-link btn btn-outline-secondary py-1" href="/index"><strong>Home</strong></a>
+                        </li>
+                        <li class="nav-item pl-2 my-1">
+                            <a type="button" class="nav-link btn btn-outline-secondary py-1" href="/"><strong>Catalogue</strong></a>
+                        </li>
+                        <li class="nav-item pl-2 my-1">
+                          <a type="button" class="nav-link btn btn-outline-secondary py-1" href="/faq/"><strong>FAQ</strong></a>
+                      </li>
+                        <li class="nav-item pl-2 my-1">
+                          <a type="button" class="nav-link btn btn-outline-secondary py-1" href="/contact/"><strong>Contact us</strong></a>
+                      </li>
+                        <li class="nav-item dropdown pl-2 my-1">
+                            <a class="nav-link dropdown-toggle btn btn-outline-secondary py-1" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <strong>Transist Risk</strong>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <form action="/" method="post">
+                                    {% csrf_token %}
+                                <li><button type="submit" name="btn" value="all" class="dropdown-item">All</button></li>
+                                <li><button type="submit" name="btn" value="low" class="dropdown-item">Low Risk</button></li>
+                                <li><button type="submit" name="btn" value="moderate" class="dropdown-item">Moderate Risk</button></li>
+                                <li><button type="submit" name="btn" value="high" class="dropdown-item">High Risk</button></li>
+                                </form>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown pl-2 my-1">
+                            <a class="nav-link dropdown-toggle btn btn-outline-secondary py-1" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <strong>Category</strong>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <form action="/" method="post">
+                                    {% csrf_token %}
+                                <li><button type="submit" name="btn" value="all" class="dropdown-item">All</button></li>
+                                <li><button type="submit" name="cat" value="2" class="dropdown-item">Cactus</button></li>
+                                <li><button type="submit" name="cat" value="3" class="dropdown-item">Hanging</button></li>
+                                <li><button type="submit" name="cat" value="4" class="dropdown-item">Aloe</button></li>
+                                <li><button type="submit" name="cat" value="5" class="dropdown-item">Haworthia</button></li>
+                                <li><button type="submit" name="cat" value="6" class="dropdown-item">Other Plants</button></li>
+                                <li><button type="submit" name="cat" value="7" class="dropdown-item">Succulents</button></li>
+                                <li><button type="submit" name="cat" value="8" class="dropdown-item">Jade</button></li>    
+                                <li><button type="submit" name="cat" value="9" class="dropdown-item">Indoor</button></li>    
+                                <li><button type="submit" name="cat" value="10" class="dropdown-item">Mother Plants</button></li>    
+                            </form>
+                            </ul>
+                        </li>
+                        <li class="nav-item pl-2 my-1">
+                          <a type="button" class="nav-link btn btn-outline-secondary py-1" target="_blank" href="https://rosaryplanthouse.wixsite.com/shibin/blog"><strong>Care</strong></a>
+                      </li>
+                    </ul>
+                    <a type="button" role="button" href="/basket/"
+                        class="nav-link btn btn-outline-secondary py-1 pl-2 ml-1">
+<strong>
+                        {% with total_qty=basket|length %}
+                            <div id="basket-qty" class="d-inline-flex">
+                                {% if total_qty > 0 %}
+                                 <p hidden>{{ total_qty }}</p>   
+                                {% else %}
+                                <p hidden>0</p>
+                                {% endif %}
+                            </div>
+                        {% endwith %} 
+                    </strong>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-cart3" viewBox="0 0 16 16">
+                            <path
+                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                        </svg>
+                        <strong>Cart</strong>
+                    </a>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    {% endblock %}
+    <div id="content">{% block content %} {% endblock %}</div>
+    <!-- Add icon library -->
+
+<!-- Add font awesome icons -->
+<!-- Footer -->
+{% block footer %}
+
+<a class="btn btn-success" href="/basket/" role="button" style="position: fixed; bottom: 55px; left: 10px; " >
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+  class="bi bi-cart3" viewBox="0 0 16 16">
+  <path
+      d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+</svg>
+</a>
+
+<a class="btn btn-success fab fa-whatsapp pr-4" href="https://api.whatsapp.com/send?phone=%2B917904050237&text=Hello, please help me to choose plants from your site." target="_blank" role="button" style="position: fixed; bottom: 55px; right: 10px; " >
+  
+</a>
+<div class="fixed-bottom">
+<footer class="text-center text-white" style="background-color: rgba(0, 235, 0, 0.322)">
+
+  
+    <!-- Copyright -->
+    <div class="d-flex justify-content-around pt-0 pb-0" style="color: black;">
+      <a href="https://wa.me/message/Z73MZA6IMYFWO1" target="_blank" class="fab fa-whatsapp-square pt-1" style="background-color: rgba(0, 235, 0, 0.295);"></a>            
+        <a href="https://facebook.com/rosaryplanthouse" target="_blank" class="fab fa-facebook pt-1" style="background-color: rgba(0, 235, 0, 0.295);"></a>
+        <a href="https://youtube.com/channel/UCUYHYgkyhoVXy5_h8a5ly6w" target="_blank" class="fab fa-youtube pt-1" style="background-color: rgba(0, 235, 0, 0.295);"></a>
+        <a href="https://instagram.com/rosary_plant_house?igshid=ksp4zz9pj5lu" target="_blank" class="fab fa-instagram pt-1" style="background-color: rgba(0, 235, 0, 0.295);"></a>
+        <a href="/index" class="fas fa-home pt-1" style="background-color: rgba(0, 235, 0, 0.295);"></a>
+        <a href="#" class="fas fa-arrow-alt-circle-up pt-1" style="background-color: rgba(0, 235, 0, 0.295);"></a>
+    </div>
+    <div class="text-center text-dark pt-0 pb-0" style="background-color: rgba(0, 235, 0, 0.295);">
+        © 2021 Copyrights. All Rights Reserved | 
+        <i class="fas fa-seedling" style="color: rgb(0, 104, 0);"></i>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  </div>
+  <!-- Footer -->
+  <script>
+    function reloadPage(){
+      location.reload(true);
+  }
+  </script>
+
+  {% endblock %}
+
+</body>
+
+</html>

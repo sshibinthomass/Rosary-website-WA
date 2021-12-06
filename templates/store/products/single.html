@@ -1,0 +1,261 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% block title %}
+{{ product.title }}
+{% endblock %}
+{% block content %}
+{% load mathfilters %}
+
+<div class="container mt-3">
+    <main class="pt-5">
+        <marquee behavior="scroll" direction="left" style="background-color: rgba(255, 255, 0, 0.589);">Please click<strong> Place order</strong> after selecting the plans.</marquee>
+        <div class="d-flex justify-content-end mb-2">
+            <a type="button" role="button" href="/basket/"
+            class="nav-link btn btn-outline-secondary py-1 pl-2 ml-1 mr-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-cart3" viewBox="0 0 16 16">
+                <path
+                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg>
+            <strong>Cart</strong>
+        </a>
+            <a type="button" class="btn btn-success py-1" href="/#{{product.id}}"><strong>Catalogue</strong></a>
+        </div>
+        <div class="row g-3">
+            <div class="col-md-5 col-lg-5 order-md-first">
+                <img class="img-fluid mx-auto d-block w-100" width="200px" alt="Responsive image" src="{{ product.image.url }}">
+            </div>
+            <div class="col-md-7 col-lg-7 ps-md-3 ps-lg-5">
+                <div class="card-text text-center py-2  px-0 m-0 h4 bg-success text-white">
+                    {{product.pid}}. {{ product.title }}
+                </div>
+                <div class="border mt-2 pb-0">
+                        <div class="row ">
+                            <div class="col-12 pb-0">
+                                <table class="table table-hover">
+                                    <tbody>
+                                    <tr>
+                                        <td>Category</td>
+                                        <td>: {{ product.category }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transist Risks:</td>
+                                        <td>: {{product.risk}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Size</td>
+                                        <td>: {{product.size}} Inches</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Price</td>
+                                        <td>:                      {% if product.orgprice != product.price %}
+                                          <strike>&#8377;{{product.orgprice}}</strike>
+                                          {% endif %}
+                                          <b> &#8377; {{ product.price }}</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Watering</td>
+                                        <td>: {{product.Watering}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sunlight</td>
+                                        <td>: {{product.sun}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>Maintenance</td>
+                                      <td>: {{product.maintenance}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                          <div class="d-flex justify-content-around pt-0" style="color: black;">
+                                          <a href="https://wa.me/message/Z73MZA6IMYFWO1" target="_blank" class="fab fa-whatsapp-square pt-1"></a>            
+                                          <a href="https://facebook.com/rosaryplanthouse" target="_blank" class="fab fa-facebook pt-1"></a>
+                                        </div>
+                                        </td>
+                                        <td>
+                                          <div class="d-flex justify-content-around pt-0" style="color: black;">
+                                          <a href="https://youtube.com/channel/UCUYHYgkyhoVXy5_h8a5ly6w" target="_blank" class="fab fa-youtube pt-1"></a>
+                                          <a href="https://instagram.com/rosary_plant_house?igshid=ksp4zz9pj5lu" target="_blank" class="fab fa-instagram pt-1" style="color: rgba(0, 0, 0, 0.295);"></a>
+                                        </div>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    <div class="col">
+                        <div class="row mb-4">
+                            <div class="col-6">
+                                <label for="select">Qty</label>
+                                <select id="select">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                </select>
+                            </div>
+                            <div class="col-6 text-end">
+                            <div >
+                                <div class="d-flex justify-content-center">
+                                <button
+                                  type="button"
+                                  id="add-button"
+                                  value="{{product.id}}"
+                                  class="btn btn-secondary btn-sm"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal{{product.id}}"
+                                >
+                                  Select Plant
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                  class="bi bi-cart3" viewBox="0 0 16 16">
+                                  <path
+                                      d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                              </svg>
+                                </button>
+                                </div>
+                              </div>
+                              <!-- Modal -->
+                              <div
+                              class="modal fade text-left"
+                              id="exampleModal{{product.id}}"
+                              tabindex="-1"
+                              aria-labelledby="exampleModalLabel"
+                              aria-hidden="true"
+                            >
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header p-0 ">
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">
+                                      <strong>{{ product.title }} </strong> added to cart.
+                                    </h5>
+                                  </div>
+                                  <p class="card-text">
+                                    <div class="text-center m-0 p-0">
+                                      <img
+                                      class="img-fluid"
+                                      alt="Responsive image"
+                                      src="{{ product.image.url }}"
+                                      width="200px"
+                                    />
+                                    </div>
+              
+                                  </p>
+                                  <table class="table table-hover mt-3">
+                                    <tbody>
+                                    <tr >
+                                        <td class="py-1">Category</td>
+                                        <td class="py-1">: {{ product.category }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1">Transist Risk:</td>
+                                        <td class="py-1">: {{product.risk}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1">Size</td>
+                                        <td class="py-1">: {{product.size}} Inches </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1">Price</td>
+                                        <td class="py-1">:                       {% if product.orgprice != product.price %}
+                                          <strike>&#8377;{{product.orgprice}}</strike>
+                                          {% endif %}
+                                          <b> &#8377; {{ product.price }}</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1">Watering</td>
+                                        <td class="py-1">: {{product.Watering}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1">Sunlight</td>
+                                        <td class="py-1">: {{product.sun}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td class="py-1">Maintenance</td>
+                                      <td class="py-1">: {{product.maintenance}}</td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <div class="d-flex justify-content-around pt-0" style="color: black;">
+                                        <a href="https://wa.me/message/Z73MZA6IMYFWO1" target="_blank" class="fab fa-whatsapp-square pt-1"></a>            
+                                        <a href="https://facebook.com/rosaryplanthouse" target="_blank" class="fab fa-facebook pt-1"></a>
+                                      </div>
+                                      </td>
+                                      <td>
+                                        <div class="d-flex justify-content-around pt-0" style="color: black;">
+                                        <a href="https://youtube.com/channel/UCUYHYgkyhoVXy5_h8a5ly6w" target="_blank" class="fab fa-youtube pt-1"></a>
+                                        <a href="https://instagram.com/rosary_plant_house?igshid=ksp4zz9pj5lu" target="_blank" class="fab fa-instagram pt-1" style="color: rgba(0, 0, 0, 0.295);"></a>
+                                      </div>
+                                      </td>
+                                    </tr>
+                                    </tbody>
+                                  </table>                      
+                                  <div class="modal-footer py-1">
+
+                                    <div class="mr-5">    
+                  
+                                      <form action="/basket/">
+                                      <button type="submit" class="btn btn-success" >
+                                        Check Bill
+                                      </button>
+                                    </form></div>
+                                    <div class="ml-5">
+                                    <a type="button" class="btn btn-primary" href="/#{{product.id}}">Select more</a>
+                                  </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </main>
+
+</div>
+
+<script>
+    $(document).on('click', '#add-button', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "basket:basket_add" %}',
+            data: {
+                productid: $('#add-button').val(),
+                productqty: $('#select option:selected').text(),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+            },
+            success: function (json) {
+               document.getElementById("basket-qty").innerHTML = json.qty
+            },
+            error: function (xhr, errmsg, err) {}
+        });
+    })
+</script>
+
+{% endblock %}

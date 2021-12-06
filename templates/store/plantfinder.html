@@ -1,0 +1,21 @@
+{% extends "./base.html" %} {% load static %} {% block title %}Catalogue{%endblock %} 
+{% load mathfilters %}
+
+{% block content %}
+
+<div class="container mt-5 pt-2">
+  <main>
+    <form action="plantlist" method="POST">
+      {% csrf_token %}
+      <label class="text-center">Please enter number seperated by ','</label><br />
+      <div class="input-group mb-3">
+      <input type="text" class="form-control" name="plantnumb" placeholder="Plants to find" />
+        <div class="input-group-append">
+          <input class="btn btn-outline-secondary" type="submit" />
+        </div>
+      </div>
+    </form>
+
+  </main>
+</div>
+{% endblock %}

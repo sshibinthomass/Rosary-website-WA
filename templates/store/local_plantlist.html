@@ -1,0 +1,59 @@
+{% extends "./base.html" %} {% load static %} {% block title %}Plant List{%endblock %} 
+
+{% block content %}
+<div class="container mt-5 pt-2">
+  <main>
+    {% block header %}
+    {% endblock %}
+    <button class="btn btn-secondary mb-2 btn-lg btn-block">All Finder List</button>
+    <table class="table table-hover table-bordered text-center">
+      <tr>
+        <th class="p-0" scope="col">S.No</th>
+        <th class="p-0" scope="col">Plant No</th>
+        <th class="p-0" scope="col">Plant Name</th>
+        <th class="p-0" scope="col">Quantity</th>
+        <th class="p-0" scope="col">Photo</th>
+      </tr>
+
+      {% for i,j,k,l,m,n in plantID %}
+      <tr>
+        <th class="p-0" scope="row"><b>{{i}}</b></th>
+        <td class="p-0">{{j}}</td>
+        <td class="p-0">{{k}}</td>
+        <td class="p-0">{{l}}</td>
+        <td class="p-0">
+          <img
+            src="{{m}}"
+            alt="mypic"
+            width="50"
+            height="50"
+          />
+        </td>
+      </tr>
+      {% endfor %}
+      <tr class="font-weight-bold">
+        <td class="p-0"></td>
+        <td class="p-0"></td>
+        <td class="p-0 text-right">Total:</td>
+        <td class="p-0">{{l2}}</td>
+      </tr>
+  </table>
+  {% block footer %}
+  <a class="btn btn-success" href="/billing/local" role="button" style="position: fixed; bottom: 1px; left: 10px;" >
+    All Plants
+  </a>
+  <a class="btn btn-success" href="/billing/localava" role="button" style="position: fixed; bottom: 1px; left: 105px;" >
+    Available
+  </a>
+  <a class="btn btn-success" href="/billing/lplantfinder" role="button" style="position: fixed; bottom: 1px; left: 200px;" >
+    Finder
+  </a>
+  <a class="btn btn-success" href="/billing/localna" role="button" style="position: fixed; bottom: 1px; left: 280px; " >
+    Not-Ava
+  </a>
+  {% endblock %}
+</main>
+</div>
+<br>
+<br>
+{% endblock %}

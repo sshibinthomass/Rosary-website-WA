@@ -1,0 +1,322 @@
+{% extends "./base.html" %} {% load static %} {% block title %}Home{%endblock %} 
+
+
+
+{% block content %}
+<main>
+
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <rect width="100%" height="100%" fill="#777"/>
+          <img src="/media/images/img9.jpg" class="d-block" alt="...">
+        </svg>
+
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Amazing Collection</h1>
+            <p>More than 150+ Verities Available.</p>
+            <p><a class="btn btn-lg btn-primary" href="/">Catalogue</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="100%" fill="#777"/>
+          <img src="/media/images/img8.jpg" class="d-block" alt="...">
+        </svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Customer Satisfaction</h1>
+            <p>We Delivered 10000+ plants in last one year.</p>
+            <p><a class="btn btn-lg btn-primary" href="/faq/">FAQ</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="100%" fill="#777"/>
+          <img src="/media/images/img10.jpg" class="d-block" alt="...">
+        </svg>
+
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>Well-established Experience</h1>
+            <p>More than 20 years on experience in the paticular field.</p>
+            <p><a class="btn btn-lg btn-primary" href="/contact/">Contact us</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">السابق</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">التالي</span>
+    </button>
+  </div>
+
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+  <div class="container marketing ">
+    <!-- Three columns of text below the carousel -->
+    <div>
+      <button
+      type="button"
+      id="{{product.id}}"
+      value="{{product.id}}"
+      class="btn btn-secondary btn-lg btn-block mb-2"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal{{product.id}}"
+    >
+      Terms and Condition(Click here)
+    </button>
+    <!-- Modal -->
+    <div
+    class="modal fade text-left"
+    id="exampleModal{{product.id}}"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Terms and Condition
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <p class="card-text">
+          <table class="table table-hover mt-3 text-center">
+            <tbody>
+            <tr>
+                <td class="pb-0">Delivery limited due to covid.</td>
+            </tr>
+            <tr>
+                <td class="pb-0">Size and Cost is Mentioned bellow each Plant (Minimum order is 5 plants)</td>
+            </tr>
+            <tr>
+                <td class="pb-0">Plants will be dispatched on nearest Monday or Wednesday only.</td>
+            </tr>
+            <tr>
+                <td class="pb-0">Plants will be sent bareroot</td>
+            </tr>
+            <tr>
+                <td class="pb-0">Any Damage will be replaced with customers next order.</td>
+            </tr>
+            <tr>
+                <td class="pb-0">Only after payment order will be confirmed</td>
+            </tr>
+            <tr>
+                <td class="pb-0">Plants will be dispatched by DTDC(preferably), Speed post or Professional(on client request).</td>
+            </tr>
+            <tr>
+              <td class="pb-0">Add Plants to cart individually</td>
+            </tr>
+            <tr>
+              <td class="pb-0">After adding to cart click <b>Place order</b></td>
+            </tr>
+            <tr>
+              <td class="pb-0">Additional Shipping cost will be applicable depending on place.</td>
+            </tr>
+            <tr>
+              <td class="pb-0">Payment and other details can be availed in Whatsapp(after clicking Place order)</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="d-flex justify-content-around pt-0" style="color: black;">
+                <a href="https://wa.me/message/Z73MZA6IMYFWO1" target="_blank" class="fab fa-whatsapp-square pt-1"></a>            
+                <a href="https://facebook.com/rosaryplanthouse" target="_blank" class="fab fa-facebook pt-1"></a>
+                <a href="https://youtube.com/channel/UCUYHYgkyhoVXy5_h8a5ly6w" target="_blank" class="fab fa-youtube pt-1"></a>
+                <a href="https://instagram.com/rosary_plant_house?igshid=ksp4zz9pj5lu" target="_blank" class="fab fa-instagram pt-1" style="color: rgba(0, 0, 0, 0.295);"></a>
+              </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>   
+        </p>                   
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Agree
+          </button>
+          <form action="/basket/">
+            <button type="submit" class="btn btn-success">
+              Go to Cart
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div> 
+    </div>
+    <div class="h4 p-3 m-0 bg-success text-center text-white">Sort based on Requirements
+    </div>
+    <div class="d-flex justify-content-center">
+      <div class="nav-item dropdown">
+        <a class="btn btn-lg nav-link dropdown-toggle mt-1 mb-1 py-0 btn-success" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Sort based on State
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <form action="/" method="post">
+                {% csrf_token %}
+                {% for i,j in state %}
+                <li><button type="submit" name="state" value="{{i}}" class="dropdown-item">{{j}}</button></li>
+                {% endfor %}
+            </form>
+        </ul>
+      </div>
+    </div>
+
+    <div class="jumbotron row row-cols-1 row-cols-sm-2 row-cols-md-5 g-4 my-0 pt-0 pb-4" style="background-color: rgba(0, 128, 0, 0.315);">
+      <div class="btn-group dropup col-lg-3">
+      <a class="btn btn-success text-white" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Category
+        </a>
+        <div class="collapse show" id="collapseExample">
+          <div class="card card-body">
+            <form action="/" method="post">
+              <div class="d-grid gap-2">
+  
+              {% csrf_token %}
+                <button class="btn btn-success text-center p-0" type="submit" name="btn" value="all">All</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="2">Cactus</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="3">Hanging</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="4">Aloe</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="5">Haworthia</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="6">Other Plants</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="7">Succulents</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="8">Jade</button> 
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="9">Indoor</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="10">Mother Plants</button>
+            </div>
+              </form>        
+    </div>      
+      </div>
+      </div>
+      <!--Sun/Water-->
+      <div class="btn-group dropup col-lg-3">
+        <a class="btn btn-success text-white" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Sun/Watering
+          </a>
+          <div class="collapse show" id="collapseExampleSun">
+            <div class="card card-body">
+                <form action="/" method="post">
+                  {% csrf_token %}
+                  <div class="d-grid gap-2">
+                    <button type="submit" name="flt" value="all" class="btn btn-outline-success text-center p-0">All</button>
+                    <span class="badge bg-success">Watering</span>
+                    <button type="submit" name="flt" value="wlow" class="btn btn-outline-success text-center p-0">Low</button>
+                    <button type="submit" name="flt" value="wnormal" class="btn btn-outline-success text-center p-0">Normal</button>
+                    <button type="submit" name="flt" value="whigh" class="btn btn-outline-success text-center p-0">High</button>
+                    <span class="badge bg-success">SunLight</span>
+                    <button type="submit" name="flt" value="slow" class="btn btn-outline-success text-center p-0">Low</button>
+                    <button type="submit" name="flt" value="snormal" class="btn btn-outline-success text-center p-0">Normal</button>
+                    <button type="submit" name="flt" value="shigh" class="btn btn-outline-success text-center p-0">High</button>
+                  </div>
+                </form>      
+            </div>      
+          </div>
+      </div>
+      <!--Maintenance Risk-->
+      <div class="btn-group dropup col-lg-3">
+        <a class="btn btn-success text-white" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Maintenance
+          </a>
+          <div class="collapse show" id="collapseExampleRisk">
+            <div class="card card-body">
+                <form action="/" method="post">
+                  {% csrf_token %}
+                  <div class="d-grid gap-2">
+
+              <button type="submit" name="btn" value="all" class="btn btn-outline-success text-center p-0">All</button>
+              <button type="submit" name="btn" value="mlow" class="btn btn-outline-success text-center p-0">Low Maintenance</button>
+              <button type="submit" name="btn" value="mmoderate" class="btn btn-outline-success text-center p-0">Moderate Maintenance</button>
+              <button type="submit" name="btn" value="mhigh" class="btn btn-outline-success text-center p-0">High Maintenance</button>
+              </div>
+              </form>      
+      </div>      
+        </div>
+      </div>
+      <!--Risk-->
+      <div class="btn-group dropup col-lg-3">
+        <a class="btn btn-success text-white" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Transist Risk
+          </a>
+          <div class="collapse show" id="collapseExampleRisk">
+            <div class="card card-body">
+                <form action="/" method="post">
+                  {% csrf_token %}
+                  <div class="d-grid gap-2">
+              <button type="submit" name="btn" value="all" class="btn btn-outline-success text-center p-0">All</button>
+              <button type="submit" name="btn" value="low" class="btn btn-outline-success text-center p-0">Low Risk</button>
+              <button type="submit" name="btn" value="moderate" class="btn btn-outline-success text-center p-0">Moderate Risk</button>
+              <button type="submit" name="btn" value="high" class="btn btn-outline-success text-center p-0">High Risk</button>
+              </div>
+              </form>      
+      </div>      
+        </div>
+      </div>      
+    </div>
+
+
+    <!-- START THE FEATURETTES -->
+<hr>
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">One stop solution <span class="text-muted">for all your plant needs.</span></h2>
+        <p class="lead">We have wide verity of succulents and other plants from which you choose.</p>
+      </div>
+      <div class="col-md-5">
+        <img src="/media/images/img1.jpg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Low Cost,<span class="text-muted"> Best quality.</span></h2>
+        <p class="lead">Low cost dosent always mean the quality is compromised. We strive to give you plants of superb quality.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img src="/media/images/img2.jpg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">The Balcony<span class="text-muted">Project</span></h2>
+        <p class="lead">We provide plants of great quality and wide verity to decorate your surroundings with Green.</p>
+      </div>
+      <div class="col-md-5">
+        <img src="/media/images/img3.jpg" class="d-block w-100" alt="...">
+      </div>
+    </div>
+
+  </div><!-- /.container -->
+<br>
+<br>
+</main>
+
+{% endblock %}

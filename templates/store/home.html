@@ -1,0 +1,613 @@
+{% extends "./base.html" %} {% load static %} {% block title %}Catalogue{%endblock %} 
+{% load mathfilters %}
+{% load static %}
+
+{% block content %}
+<main class="pt-2 mt-1">
+  <div class="album pb-5 bg-light">
+    <div class="mx-2 mt-5">
+      <div class="h6 mb-0 text-center">
+        <div class="mb-1">
+          <button
+          type="button"
+          id="{{product.id}}"
+          value="{{product.id}}"
+          class="btn btn-secondary btn-block"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal{{product.id}}"
+        >
+          Terms and Condition(Click here)
+        </button>
+        <!-- Modal -->
+        <div
+        class="modal fade text-left"
+        id="exampleModal{{product.id}}"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+        >
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Terms and Condition
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <p class="card-text">
+            <table class="table table-hover mt-3 text-center">
+              <tbody>
+              <tr>
+                  <td class="pb-0">Delivery limited due to covid.</td>
+              </tr>
+              <tr>
+                  <td class="pb-0">Size and Cost is Mentioned bellow each Plant (Minimum order is 5 plants)</td>
+              </tr>
+              <tr>
+                  <td class="pb-0">Plants will be dispatched on nearest Monday or Wednesday only.</td>
+              </tr>
+              <tr>
+                  <td class="pb-0">Plants will be sent bareroot</td>
+              </tr>
+              <tr>
+                  <td class="pb-0">Any Damage will be replaced with customers next order.</td>
+              </tr>
+              <tr>
+                  <td class="pb-0">Only after payment order will be confirmed</td>
+              </tr>
+              <tr>
+                  <td class="pb-0">Plants will be dispatched by DTDC(preferably), Speed post or Professional(on client request).</td>
+              </tr>
+              <tr>
+                <td class="pb-0">Add Plants to cart individually</td>
+              </tr>
+              <tr>
+                <td class="pb-0">After adding to cart click <b>Place order</b></td>
+              </tr>
+              <tr>
+                <td class="pb-0">Additional Shipping cost will be applicable depending on place.</td>
+              </tr>
+              <tr>
+                <td class="pb-0">Payment and other details can be availed in Whatsapp(after clicking Place order)</td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="d-flex justify-content-around pt-0" style="color: black;">
+                  <a href="https://wa.me/message/Z73MZA6IMYFWO1" target="_blank" class="fab fa-whatsapp-square pt-1"></a>            
+                  <a href="https://facebook.com/rosaryplanthouse" target="_blank" class="fab fa-facebook pt-1"></a>
+                  <a href="https://youtube.com/channel/UCUYHYgkyhoVXy5_h8a5ly6w" target="_blank" class="fab fa-youtube pt-1"></a>
+                  <a href="https://instagram.com/rosary_plant_house?igshid=ksp4zz9pj5lu" target="_blank" class="fab fa-instagram pt-1" style="color: rgba(0, 0, 0, 0.295);"></a>
+                </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>   
+            </p>                   
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Agree
+              </button>
+              <form action="/basket/">
+                <button type="submit" class="btn btn-success">
+                  Check Bill
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        </div> 
+        </div>
+
+        <marquee behavior="scroll" direction="left" style="background-color: rgba(255, 255, 0, 0.589);">Please click<strong> Place order</strong> after selecting the plans.</marquee>
+        
+        {% if basket|length < 5 %}
+        <div class="alert alert-primary text-center py-1 mb-1" role="alert">
+          Please Add Atleast <strong>5</strong> items to cart    
+        </div>
+        {% endif %}
+
+        {% if basket.get_total_price >= 700 %}
+        <div class="alert alert-primary text-center py-1 mb-1" role="alert">
+          One Complementary plant will be added to cart since you ordered for an amount of more than 700
+        </div>
+        {% else %}
+        <div class="alert alert-primary text-center py-1 mb-1" role="alert">
+          Purchase for more than 700 and get a free gift from us.
+        </div>
+        {% endif %}
+
+        <div class="h4 p-2 mb-0 bg-success text-white">{{typeName}}</div>
+        <div class="btn-group dropup">
+          {% ifequal typeName "All Collection" %}
+          <!--Sort-->
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle my-0 py-0" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Sort
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                    <li><button type="submit" name="sort" value="rem" class="dropdown-item">Remove sort</button></li>
+                    <li><button type="submit" name="sort" value="new" class="dropdown-item">Newest</button></li>
+                    <li><button type="submit" name="sort" value="l-h" class="dropdown-item">Price(Low-High)</button></li>
+                    <li><button type="submit" name="sort" value="h-l" class="dropdown-item">Price(High-Low)</button></li>
+                    </form>
+                </ul>
+              </div>
+          <!--Select State-->
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle my-0 py-0" href="#" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Select State
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <form action="/" method="post">
+                        {% csrf_token %}
+                        {% for i,j in state %}
+                        <li><button type="submit" name="state" value="{{i}}" class="dropdown-item">{{j}}</button></li>
+                        {% endfor %}
+                    </form>
+                </ul>
+              </div>
+          {% endifequal %}
+        </div>
+        <br>
+      <div class="mb-1">
+        <div class="btn-group pb-1">
+          <form action="/" method="post">
+            {% csrf_token %}
+            <button type="submit" name="btn" value="all" class="btn btn-success  text-white text-center">All Plants</button>
+          </form>
+        </div>
+        <div class="btn-group pb-1">
+          <form action="/" method="post">
+            {% csrf_token %}
+            <button type="submit" name="btn" value="offer" class="btn btn-success  text-white text-center">Offer</button>
+          </form>
+        </div>
+        <div class="btn-group pb-1">
+          <form action="/" method="post">
+            {% csrf_token %}
+            <button type="submit" name="btn" value="new" class="btn btn-success  text-white text-center">New</button>
+          </form>
+        </div>
+        <div class="btn-group pb-1">
+          <form action="/" method="post">
+            {% csrf_token %}
+            <button type="submit" name="btn" value="fast" class="btn btn-success  text-white text-center">Fast Selling</button>
+          </form>
+        </div>
+        <!--Catalogue-->
+      <div class="btn-group dropup pb-1">
+      <a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Category
+        </a>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <form action="/" method="post">
+              <div class="d-grid gap-2">
+  
+              {% csrf_token %}
+                <button class="btn btn-success text-center p-0" type="submit" name="btn" value="all">All</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="2">Cactus</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="3">Hanging</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="4">Aloe</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="5">Haworthia</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="6">Other Plants</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="7">Succulents</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="8">Jade</button> 
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="9">Indoor</button>
+                <button class="btn btn-outline-success text-center p-0" type="submit" name="cat" value="10">Mother Plants</button> 
+
+            </div>
+              </form>        
+    </div>      
+      </div>
+      </div>
+      <!--Sun/Water-->
+      <div class="btn-group dropup pb-1">
+        <a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExampleSun" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Sun/Watering
+          </a>
+          <div class="collapse" id="collapseExampleSun">
+            <div class="card card-body">
+                <form action="/" method="post">
+                  {% csrf_token %}
+                  <div class="d-grid gap-2">
+                    <button type="submit" name="flt" value="all" class="btn btn-outline-success text-center p-0">All</button>
+                    <span class="badge bg-success">Watering</span>
+                    <button type="submit" name="flt" value="wlow" class="btn btn-outline-success text-center p-0">Low</button>
+                    <button type="submit" name="flt" value="wnormal" class="btn btn-outline-success text-center p-0">Normal</button>
+                    <button type="submit" name="flt" value="whigh" class="btn btn-outline-success text-center p-0">High</button>
+                    <span class="badge bg-success">SunLight</span>
+                    <button type="submit" name="flt" value="slow" class="btn btn-outline-success text-center p-0">Low</button>
+                    <button type="submit" name="flt" value="snormal" class="btn btn-outline-success text-center p-0">Normal</button>
+                    <button type="submit" name="flt" value="shigh" class="btn btn-outline-success text-center p-0">High</button>
+                  </div>
+                </form>      
+            </div>      
+          </div>
+      </div>
+      <!--Risk-->
+      <div class="btn-group dropup pb-1">
+        <a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExampleRisk" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Maintenance
+          </a>
+          <div class="collapse" id="collapseExampleRisk">
+            <div class="card card-body">
+                <form action="/" method="post">
+                  {% csrf_token %}
+                  <div class="d-grid gap-2">
+
+              <button type="submit" name="btn" value="all" class="btn btn-outline-success text-center p-0">All</button>
+              <button type="submit" name="btn" value="mlow" class="btn btn-outline-success text-center p-0">Low Maintenance</button>
+              <button type="submit" name="btn" value="mmoderate" class="btn btn-outline-success text-center p-0">Moderate Maintenance</button>
+              <button type="submit" name="btn" value="mhigh" class="btn btn-outline-success text-center p-0">High Maintenance</button>
+              </div>
+              </form>      
+      </div>      
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button
+      type="button"
+      id="{{product.id}}"
+      value="{{product.id}}"
+      class="btn btn-secondary"
+      data-bs-toggle="modal"
+      data-bs-target="#deliveryModal{{product.id}}"
+    >
+      Additional Delivery charges depending on place(Click here)
+    </button>
+    <!-- Modal -->
+    <div
+    class="modal fade text-left"
+    id="deliveryModal{{product.id}}"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Delivery Charges
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <p class="card-text">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Location</th>
+                <th scope="col">Cost</th>
+                <th scope="col">Plants</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Tamil Nadu</th>
+                <td>80</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <th scope="row">South India(except T.N)</th>
+                <td>100</td>
+                <td>12</td>
+              </tr>
+              <tr>
+                <th scope="row">Other parts of India</th>
+                <td>150</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <th scope="row">Other parts of India</th>
+                <td>200</td>
+                <td>12</td>
+              </tr>
+            </tbody>
+          </table>  
+        </p>                   
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Agree
+          </button>
+          <form action="/">
+            <button type="submit" class="btn btn-success">
+              Go to Cart
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div> 
+    </div>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 destinations_row mt-0">
+        {% for product in products %}
+
+        <div class="col" id="{{product.pid}}">
+          <div class="card shadow-sm px-2 pt-2 item_grid" style="background-color: rgba(0, 235, 0, 0.185)">
+            <img
+              class="img-fluid"
+              alt="Responsive image"
+              src="{{ product.image.url }}"
+            />
+            {% if product.tag != "None" %}
+            <div class="spec_offer text-center">
+              <h5><span class="badge bg-primary">{{product.tag}}</span></h5>
+            </div>
+            {% endif %}
+            <div class="card-body pt-0  px-0 pb-1">
+              <p class="card-text text-center pt-0  px-0 m-0 ">
+                <a
+                  class="text-decoration-none text-success h5"
+                  href="{{ product.get_absolute_url }}"
+                  ><strong>{{product.pid}}. {{ product.title }}</strong></a>
+              </p>
+              <p class="card-text text-danger text-center pt-0  px-0 m-0" >Transist Risk: {{product.risk}}</p>
+              <p class="card-text text-center pt-0  px-0 m-0" style="font-size: 12px;">Size: {{product.size}} Inches
+              </p>
+
+              <div class="col">
+                <div class="row px-1">
+                  <div class="col-6 p-0">
+                    <label for="select"><h5>Qty</h5></label>
+                    <select id="{{product.id}}sel">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option>
+                      <option value="14">14</option>
+                      <option value="15">15</option>
+                      <option value="16">16</option>
+                      <option value="17">17</option>
+                      <option value="18">18</option>
+                      <option value="19">19</option>
+                      <option value="20">20</option>
+                    </select>
+                  </div>
+                  <div class="col-6 text-end p-0">
+                    <span class="h5">
+                    <div class="text-center">
+                      {% if product.orgprice != product.price %}
+                      <strike>&#8377;{{product.orgprice}}</strike>
+                      {% endif %}
+                      <b> &#8377; {{ product.price }}</b>
+                      </div>
+                  </span>
+                </div>
+                  <div class="col-16 pt-0">
+                    <div class="d-flex justify-content-center">
+                      <form action="/">
+                    <button
+                      type="submit"
+                      id="{{product.id}}"
+                      value="{{product.id}}"
+                      class="btn btn-secondary btn-sm"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal{{product.id}}"
+                    >
+                      Select Plant
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-cart3" viewBox="0 0 16 16">
+                      <path
+                          d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                  </svg>
+                    </button>
+                    </form>
+                    </div>
+                  </div>
+                <!--Modal-->
+                <div
+                class="modal fade text-left"
+                id="exampleModal{{product.id}}"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header p-0 ">
+                      <h5 class="modal-title text-center" id="exampleModalLabel">
+                        <strong>{{ product.title }} </strong> added to cart.
+                      </h5>
+                    </div>
+                    <p class="card-text">
+                      <div class="text-center m-0 p-0">
+                        <img
+                        class="img-fluid"
+                        alt="Responsive image"
+                        src="{{ product.image.url }}"
+                        width="200px"
+                      />
+                      </div>
+
+                    </p>
+                    <table class="table table-hover mt-3">
+                      <tbody>
+                      <tr >
+                          <td class="py-1">Category</td>
+                          <td class="py-1">: {{ product.category }}</td>
+                      </tr>
+                      <tr>
+                          <td class="py-1">Transist Risk:</td>
+                          <td class="py-1">: {{product.risk}}</td>
+                      </tr>
+                      <tr>
+                          <td class="py-1">Size</td>
+                          <td class="py-1">: {{product.size}} Inches </td>
+                      </tr>
+                      <tr>
+                          <td class="py-1">Price</td>
+                          <td class="py-1">:                       {% if product.orgprice != product.price %}
+                            <strike>&#8377;{{product.orgprice}}</strike>
+                            {% endif %}
+                            <b> &#8377; {{ product.price }}</b>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td class="py-1">Watering</td>
+                          <td class="py-1">: {{product.Watering}}</td>
+                      </tr>
+                      <tr>
+                          <td class="py-1">Sunlight</td>
+                          <td class="py-1">: {{product.sun}}</td>
+                      </tr>
+                      <tr>
+                        <td class="py-1">Maintenance</td>
+                        <td class="py-1">: {{product.maintenance}}</td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="d-flex justify-content-around pt-0" style="color: black;">
+                          <a href="https://wa.me/message/Z73MZA6IMYFWO1" target="_blank" class="fab fa-whatsapp-square pt-1"></a>            
+                          <a href="https://facebook.com/rosaryplanthouse" target="_blank" class="fab fa-facebook pt-1"></a>
+                        </div>
+                        </td>
+                        <td>
+                          <div class="d-flex justify-content-around pt-0" style="color: black;">
+                          <a href="https://youtube.com/channel/UCUYHYgkyhoVXy5_h8a5ly6w" target="_blank" class="fab fa-youtube pt-1"></a>
+                          <a href="https://instagram.com/rosary_plant_house?igshid=ksp4zz9pj5lu" target="_blank" class="fab fa-instagram pt-1" style="color: rgba(0, 0, 0, 0.295);"></a>
+                        </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>                      
+                    <div class="modal-footer py-1">
+                    <div class="mr-5">                      
+                      <form action="/basket/">
+                      <button type="submit" class="btn btn-success" >
+                        Check Bill
+                      </button>
+                    </form></div>
+                    <div >
+                      <button
+                      type="button"
+                      class="btn btn-primary"
+                      data-bs-dismiss="modal"
+                    >
+                      Select More
+                    </button>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+    </div>
+    <br>
+    <br>
+</main>
+<script>
+  // Delete Item
+  $(document).on('click', '.delete-button', function (e) {
+    e.preventDefault();
+    var prodid = $(this).data('index');
+    $.ajax({
+      type: 'POST',
+      url: '{% url "basket:basket_delete" %}',
+      data: {
+        productid: $(this).data('index'),
+        csrfmiddlewaretoken: "{{csrf_token}}",
+        action: 'post'
+      },
+      success: function (json) {
+        $('.product-item[data-index="' + prodid + '"]').remove();
+        document.getElementById("subtotal").innerHTML = json.subtotal;
+        document.getElementById("basket-qty").innerHTML = json.qty;
+        document.location.reload();
+      },
+      error: function (xhr, errmsg, err) {}
+    });
+  })
+
+  // Update Item
+  $(document).on('click', '.update-button', function (e) {
+    e.preventDefault();
+    var prodid = $(this).data('index');
+    $.ajax({
+      type: 'POST',
+      url: '{% url "basket:basket_update" %}',
+      data: {
+        productid: $(this).data('index'),
+        productqty: $('#select' + prodid + ' option:selected').text(),
+        csrfmiddlewaretoken: "{{csrf_token}}",
+        action: 'post'
+      },
+      success: function (json) {
+        document.getElementById("basket-qty").innerHTML = json.qty
+        document.getElementById("subtotal").innerHTML = json.subtotal
+        document.location.reload();
+      },
+      error: function (xhr, errmsg, err) {}
+    });
+  })
+
+  var fired_button = "none";
+  $("button").click(function () {});
+
+  $(document).on("click", "button", function (e) {
+    var val = this.id + "sel";
+    var qua = document.getElementById(val).value;
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: '{% url "basket:basket_add" %}',
+      data: {
+        productid: this.id,
+        productqty: qua,
+        csrfmiddlewaretoken: "{{csrf_token}}",
+        action: "post",
+      },
+      success: function (json) {
+        document.getElementById("val").innerHTML = json.qty;
+        document.location.reload();
+      },
+      error: function (xhr, errmsg, err) {},
+    });
+  });
+
+  function reloadPage(){
+    location.reload(true);
+}
+</script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "./base.html" %} {% load static %} {% block title %}Plant List{%endblock %} 
+{% load mathfilters %}
+
+{% block content %}
+<div class="container mt-5 pt-2">
+  <main>
+    {% block header %}
+    {% endblock %}
+    <a class="btn btn-secondary mb-2 btn-lg btn-block" href="/billing/plantfinder" role="button">
+      Bill
+    </a>    
+    <table class="table table-hover table-bordered text-center">
+      <tr>
+        <th class="p-0" scope="col">S.No</th>
+        <th class="p-0" scope="col">Id</th>
+        <th class="p-0" scope="col">Plant Name</th>
+        <th class="p-0" scope="col">Quantity</th>
+        <th class="p-0" scope="col">price</th>
+        <th class="p-0" scope="col">Photo</th>
+      </tr>
+
+      {% for i,j,k,l,m,n,o in plantID %}
+      <tr>
+        <th class="p-0" scope="row"><b>{{i}}</b></th>
+        <td class="p-0">{{j}}</td>
+        <td class="p-0">{{k}}-{{o}}</td>
+        <td class="p-0">{{l}}</td>
+        <td class="p-0">{{l}}x{{n}}= &#8377;{{l|mul:n}}</td>
+        <td class="p-0">
+          <img
+            src="{{m}}"
+            alt="mypic"
+            width="50"
+            height="50"
+          />
+        </td>
+      </tr>
+      {% endfor %}
+      <tr class="font-weight-bold">
+        <td class="p-0"></td>
+        <td class="p-0"></td>
+        <td class="p-0 text-right">Total:</td>
+        <td class="p-0">{{l2}}</td>
+        <td class="p-0">{{price}}</td>
+        <td class="p-0">+delivery</td>
+      </tr>
+  </table>
+  {% block footer %}
+  {% endblock %}
+</main>
+</div>
+<br>
+<br>
+  {% endblock %}

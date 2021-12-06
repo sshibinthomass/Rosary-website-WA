@@ -1,0 +1,35 @@
+{% extends "./base.html" %} {% load static %} {% block title %}Catalogue{%endblock %} 
+{% load mathfilters %}
+
+{% block content %}
+
+<div class="container mt-5 pt-2">
+  <main>
+    {% block header %}
+    {% endblock %}
+    <button class="btn btn-secondary btn-lg btn-block">Plant Finder</button>
+    <form action="lplantlist" method="POST">
+      {% csrf_token %}
+      <label class="text-center">Please enter number seperated by ','</label><br />
+      <div class="input-group mb-3">
+      <input type="text" class="form-control" name="plantnumb" placeholder="Plants to find" />
+        <div class="input-group-append">
+          <input class="btn btn-outline-secondary" type="submit" />
+        </div>
+      </div>
+    </form>
+    {% block footer %}
+    <a class="btn btn-success" href="/billing/local" role="button" style="position: fixed; bottom: 1px; left: 10px;" >
+      All Plants
+    </a>
+    <a class="btn btn-success" href="/billing/localava" role="button" style="position: fixed; bottom: 1px; left: 110px;" >
+      Available
+    </a>
+    <a class="btn btn-success" href="/billing/localna" role="button" style="position: fixed; bottom: 1px; left: 210px; " >
+      Not-Ava
+    </a>
+    {% endblock %}
+
+  </main>
+</div>
+{% endblock %}
